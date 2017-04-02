@@ -1,4 +1,4 @@
-package com.example.aditya.loginapp;
+package com.example.aditya.pedestriannavigator;
 
 import android.app.Activity;
 import android.content.Context;
@@ -22,10 +22,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

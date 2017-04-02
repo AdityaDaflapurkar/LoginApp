@@ -1,4 +1,4 @@
-package com.example.aditya.loginapp;
+package com.example.aditya.pedestriannavigator;
 
 public class Edge  {
 	  private final String id; 

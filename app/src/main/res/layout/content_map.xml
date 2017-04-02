@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.aditya.loginapp.MapActivity" >
+    tools:context="com.example.aditya.pedestriannavigator.MapActivity" >
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.example.aditya.loginapp;
+package com.example.aditya.pedestriannavigator;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
