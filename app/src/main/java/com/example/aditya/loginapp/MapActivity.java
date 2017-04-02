@@ -56,7 +56,6 @@ public class MapActivity extends Activity implements SensorEventListener {
     private  long i=0;
     TextView testtext;
     TextView steptest;
-    /////////////////////////////////////////
     ImageView imageview;
     Button button1,button2;
     Bitmap bitmap1,bitmap2;
@@ -66,12 +65,9 @@ public class MapActivity extends Activity implements SensorEventListener {
     Matrix matrix;
     int bitmap1Width, bitmap1Height, CanvasWidth,CanvasHeight;
     float clx,cly;
-    // int lstep;
     float theta, theta2;
     int degreesAngle = 0 ;
     private boolean firstrotate = true;
-
-    ///////////////////////////////////////////////////
 
     private Sensor mMagnetometer;
     private float[] mLastAccelerometer = new float[3];
@@ -82,18 +78,18 @@ public class MapActivity extends Activity implements SensorEventListener {
     private float[] mOrientation = new float[3];
     // private float mCurrentDegree = 0f;
 
-    ////////////////////////////////////////////////// FOR THE GRAPH
+    //FOR THE GRAPH
     private String mapJSON;
     private Graph currentGraph;
     private LinkedList<Vertex> givenPath;
     private DijkstraAlgorithm dijkstraAlgorithm;
 
-    /// New Graph Stuff
+  
 
     private static List<Vertex> nodes;
     private static List<Edge> edges;
 
-    /////////
+    
 
 
     @Override
@@ -104,7 +100,6 @@ public class MapActivity extends Activity implements SensorEventListener {
         testtext = (TextView) findViewById(R.id.txtbox);
         steptest = (TextView) findViewById(R.id.stpbx);
 
-        ////////
 
         nodes = new ArrayList<Vertex>();
         edges = new ArrayList<Edge>();
@@ -157,7 +152,6 @@ public class MapActivity extends Activity implements SensorEventListener {
         dijkstraAlgorithm.execute(currentGraph.getVertexes().get(startingVertex));
         givenPath = dijkstraAlgorithm.getPath(currentGraph.getVertexes().get(destinationVertex));
 
-        ///////
 
         mInitialized = false;
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -168,7 +162,6 @@ public class MapActivity extends Activity implements SensorEventListener {
 
 
         button1 = (Button)findViewById(R.id.button1);
-//        button2= (Button)findViewById(R.id.button2);
         resources = getResources();
         matrix =  new Matrix();
         CreateBitmap();
@@ -190,59 +183,8 @@ public class MapActivity extends Activity implements SensorEventListener {
             public void onClick(View v) {
                 Intent intent = new Intent(MapActivity.this, MainActivity.class);
                 startActivity(intent);
-                /*
-                CreateBitmap();
-                bitmap2 = Bitmap.createBitmap(600, 800, Bitmap.Config.RGB_565);
-                CreateCanvas();
-                GetWidthHeight();
-                // degreesAngle = 10;
-                clx=clx+(float)(10*Math.sin(Math.toRadians(theta2)));
-                cly=cly-(float)(10*Math.cos(Math.toRadians(theta2)));
-                pointerlist.add(new Pt(clx, cly));
-                matrix.postTranslate(
-                        (float)(10*Math.sin(Math.toRadians( theta2 ) )),
-                        -(float)(10*Math.cos(Math.toRadians(theta2)))
-                );
-
-                //  matrix.postRotate(
-                //          degreesAngle,
-                //          CanvasWidth - bitmap1Width,
-                //          CanvasHeight - bitmap1Height
-                //  );
-
-                DrawCanvas();
-                imageview.setImageBitmap(bitmap2);
-                /// matrix.reset();
-
-                */
             }
         });
-        /*
-        button2.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                if(firstrotate){
-                    firstrotate = false;
-                }
-                else {
-                    CreateBitmap();
-                    bitmap2 = Bitmap.createBitmap(600, 800, Bitmap.Config.RGB_565);
-                    CreateCanvas();
-                    GetWidthHeight();
-                    degreesAngle = 10;
-                    theta2 = (theta2) % 360;
-                    matrix.setTranslate(-bitmap1.getWidth() / 2, -bitmap1.getHeight() / 2);
-                    matrix.postRotate(theta2);
-                    //matrix.setRotate(theta2,20.5f,26f);
-                    matrix.postTranslate(clx, cly);
-                    DrawCanvas();
-                    imageview.setImageBitmap(bitmap2);
-                }
-            }
-        });
-        */
     }
 
     private static void addLane(String laneId, int sourceLocNo, int destLocNo, int duration) {
@@ -257,9 +199,7 @@ public class MapActivity extends Activity implements SensorEventListener {
     }
     public void CreateCanvas(){
         canvas = new Canvas(bitmap2);
-        /*
-        canvas.drawColor(Color.BLACK);
-        */
+     
         Drawable d = getResources().getDrawable(R.drawable.floorplan);
         d.setBounds(0, 0, 600, 800);
         d.draw(canvas);
@@ -300,7 +240,6 @@ public class MapActivity extends Activity implements SensorEventListener {
         CanvasHeight = canvas.getHeight() / 2 ;
     }
     public void DrawCanvas(){
-//        canvas.drawBitmap(bitmap1, matrix, paint);
 
         //FOR PATH
 
@@ -323,7 +262,7 @@ public class MapActivity extends Activity implements SensorEventListener {
     }
 
 
-    /////////////////////////////
+   
     protected void onResume() {
         super.onResume();
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_GAME);
@@ -331,13 +270,12 @@ public class MapActivity extends Activity implements SensorEventListener {
     }
     protected void onPause() {
         super.onPause();
-        // mSensorManager.unregisterListener(this);
         mSensorManager.unregisterListener(this, mAccelerometer);
         mSensorManager.unregisterListener(this, mMagnetometer);
     }
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-// can be safely ignored for this demo
+
     }
     @Override
     public void onSensorChanged(SensorEvent event)
@@ -345,30 +283,16 @@ public class MapActivity extends Activity implements SensorEventListener {
         if (event.sensor == mAccelerometer) {
             System.arraycopy(event.values, 0, mLastAccelerometer, 0, event.values.length);
             mLastAccelerometerSet = true;
-            ////////////////////////////
 
             float x = event.values[0];
             float y = event.values[1];
             float z = event.values[2];
-//            button1.setText(Float.toString(z));
-//            button2.setText(Float.toString(y));
             if (!mInitialized) {
                 mLastX = x;
                 mLastY = y;
                 mLastZ = z;
                 mInitialized = true;
             } else {
-/*
-                float deltaX = Math.abs(mLastX - x);
-                float deltaY = Math.abs(mLastY - y);
-                float deltaZ = Math.abs(mLastZ - z);
-
-              //  if (deltaX < NOISEX) deltaX = (float) 0.0;
-              //  if (deltaY < NOISEY) deltaY = (float) 0.0;
-              //  else if (deltaZ < NOISEZ) deltaZ = (float) 0.0;
-
-                if (deltaY<NOISEY && deltaZ<NOISEZ)
-                */
                 float deltaX = Math.abs(mLastX - x);
                 float deltaY = Math.abs(mLastY - y);
                 float deltaZ = Math.abs(mLastZ - z);
@@ -378,12 +302,9 @@ public class MapActivity extends Activity implements SensorEventListener {
                     steptest.setText(Integer.toString(nsteps));
 
                     this.onPause();
-                    ///////////////////////////////
-//                    CreateBitmap();
                     bitmap2 = Bitmap.createBitmap(600, 800, Bitmap.Config.RGB_565);
                     CreateCanvas();
                     GetWidthHeight();
-                    // degreesAngle = 10;
                     Paint p1=new Paint();
                     p1.setStrokeWidth(5);
                     p1.setColor(Color.WHITE);
@@ -395,16 +316,9 @@ public class MapActivity extends Activity implements SensorEventListener {
                     pointerlist.add(new Pt(clx, cly));
                     matrix.postTranslate(clx_t, cly_t);
 
-                    //  matrix.postRotate(
-                    //          degreesAngle,
-                    //          CanvasWidth - bitmap1Width,
-                    //          CanvasHeight - bitmap1Height
-                    //  );
 
                     DrawCanvas();
                     imageview.setImageBitmap(bitmap2);
-
-                    //////////////////////////////
 
                     try {
                         TimeUnit.MILLISECONDS.sleep(330);
@@ -418,7 +332,6 @@ public class MapActivity extends Activity implements SensorEventListener {
                 mLastZ = z;
             }
         }
-        ///////////////////////////
         else if (event.sensor == mMagnetometer) {
             System.arraycopy(event.values, 0, mLastMagnetometer, 0, event.values.length);
             mLastMagnetometerSet = true;
@@ -429,46 +342,15 @@ public class MapActivity extends Activity implements SensorEventListener {
             float azimuthInRadians = mOrientation[0];
             float azimuthInDegress = (float)(Math.toDegrees(azimuthInRadians)+360 - 24 )%360;
             testtext.setText(Float.toString(azimuthInDegress));
-            /*
-            if(Math.abs(azimuthInDegress - theta) > 10) {
-
-                CreateBitmap();
-                bitmap2 = Bitmap.createBitmap(600, 800, Bitmap.Config.RGB_565);
-                CreateCanvas();
-
-                GetWidthHeight();
-                //degreesAngle = 10;
-
-                matrix.setTranslate(-bitmap1.getWidth() / 2, -bitmap1.getHeight() / 2);
-                matrix.postRotate(theta);
-                //matrix.setRotate(theta,20.5f,26f);
-                matrix.postTranslate(clx, cly);
-                DrawCanvas();
-                imageview.setImageBitmap(bitmap2);
-
-                theta = azimuthInDegress;
-
-            }
-            */
+          
             theta2 = azimuthInDegress;
 
 
-            ///////////////////////////////////////
             mLastMagnetometerSet = false;
             mLastAccelerometerSet = false;
-            /*
-            this.onPause();
-            try {
-                TimeUnit.MILLISECONDS.sleep(300);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            this.onResume();
-            */
+            
         }
 
-
-        //////////////
 
     }
 }

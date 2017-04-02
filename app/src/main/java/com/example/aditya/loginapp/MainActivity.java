@@ -29,18 +29,16 @@ public class MainActivity extends Activity {
     private HashMap<Integer, String> VertexDescription;
     String s;
     boolean scannedNFC = false;
-    ///////////
+    
     String[] data = new String[1000];
     int dataIndex = 0;
-    ////////
+    
 
-
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ///// FOR HASHMAP
+        // FOR HASHMAP
 
         placeToVertex = new HashMap<String, Integer>();
         placeToVertex.put("Near Gate_L1", 0);
@@ -61,36 +59,24 @@ public class MainActivity extends Activity {
         VertexDescription.put(5, "Something_1");
         VertexDescription.put(6, "Something_1");
         VertexDescription.put(7, "Something_1");
-        /////
+       
 
         setContentView(R.layout.activity_main);
         btnMove = (Button)findViewById(R.id.btn);
-        /*
-        MySpinner1 = (Spinner)findViewById(R.id.myspinner1);
-        */
+        
         MySpinner2 = (Spinner)findViewById(R.id.myspinner2);
         sourceTextView = (TextView)findViewById(R.id.source);
         destinationTextView = (TextView)findViewById(R.id.destination);
         messageTextView = (TextView)findViewById(R.id.messageBox);
         initList();
-       // int x=MySpinner2.getSelectedItemPosition();
-//        messageTextView.setText((String)VertexDescription.get("Lower Left gate of LT2"));
+       
 
-        /*
-
-        myAdapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, myList1);
-        myAdapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        MySpinner1.setAdapter(myAdapter1);
-
-        */
-
-        /////////////////=====
         mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if(mNfcAdapter == null)
             Log.d("NFC", "Adapter not suppported");
 
         resolveIntent(getIntent());
-        //////////////////====
+        
         myAdapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, myList2);
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         MySpinner2.setAdapter(myAdapter2);
@@ -103,20 +89,14 @@ public class MainActivity extends Activity {
 
         @Override
         public void onClick(View arg0) {
-            // TODO Auto-generated method stub
-            /*
-            int pos1 = MySpinner1.getSelectedItemPosition();
-            */
+            
             if(!scannedNFC){
                 sourceTextView.setText("PLEASE SCAN THE NEAREST NFC TAG");
                 return;
             }
             int pos2 = MySpinner2.getSelectedItemPosition();
 
-            //if(pos1 != AdapterView.INVALID_POSITION || pos2 != AdapterView.INVALID_POSITION){
             if(pos2 != AdapterView.INVALID_POSITION){
-                //s = myList1.get(pos1);
-                //sourceTextView.setText(s);
 
                 Integer source = placeToVertex.get(s);
                String sd = myList2.get(pos2);
@@ -131,10 +111,6 @@ public class MainActivity extends Activity {
                 intent.putExtra("startingVertex", source);
                 intent.putExtra("destinationVertex", destination);
                 startActivity(intent);
-               // myList2.add(myList1.get(pos));
-               // myList1.remove(pos);
-               // myAdapter1.notifyDataSetChanged();
-               // myAdapter2.notifyDataSetChanged();
             }
         }};
 
@@ -148,16 +124,6 @@ public class MainActivity extends Activity {
         myList1.add("Lower Vertex_2");
         myList1.add("Upper Vertex_1");
         myList1.add("Upper Vertex_2");
-        /*
-        myList1.add("ChamberA");
-        myList1.add("ChamberB");
-        myList1.add("ChamberC");
-        myList1.add("ChamberD");
-        myList1.add("ChamberE");
-        myList1.add("ChamberF");
-        myList1.add("ChamberG");
-        myList1.add("ChamberH");
-        */
 
         myList2 = new ArrayList<String>();
         myList2.add("Near Gate_L1");
@@ -168,19 +134,9 @@ public class MainActivity extends Activity {
         myList2.add("Lower Vertex_2");
         myList2.add("Upper Vertex_1");
         myList2.add("Upper Vertex_2");
-        /*
-        myList2.add("ChamberA");
-        myList2.add("ChamberB");
-        myList2.add("ChamberC");
-        myList2.add("ChamberD");
-        myList2.add("ChamberE");
-        myList2.add("ChamberF");
-        myList2.add("ChamberG");
-        myList2.add("ChamberH");
-        */
+        
     }
 
-    /////////////////////////////////////////////////
     @Override
     public void onNewIntent(Intent intent)
     {
@@ -243,6 +199,4 @@ public class MainActivity extends Activity {
             }
         }
     }
-
-    ////////////////////////////////////////////////
 }
