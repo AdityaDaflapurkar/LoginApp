@@ -132,14 +132,7 @@ public class MapActivity extends Activity implements SensorEventListener {
         addLane("Edge_10", 4, 6, 15);
         addLane("Edge_11", 5, 7, 15);
         currentGraph = new Graph(nodes, edges);
-        ///////
-/*          //// COMMENTED TO IMPLEMENT NEW GRAPH
-        Gson gson = new Gson();
-        Type type = new TypeToken<Graph>() {}.getType();
-        mapJSON = "{\"vertexes\":[{\"id\":\"Gate_L1\",\"name\":\"Node_00\",\"xCoord\":150.0,\"yCoord\":400.0},{\"id\":\"Gate_L2\",\"name\":\"Node_01\",\"xCoord\":450.0,\"yCoord\":400.0},{\"id\":\"Gate_U1\",\"name\":\"Node_02\",\"xCoord\":100.0,\"yCoord\":200.0},{\"id\":\"Gate_U2\",\"name\":\"Node_03\",\"xCoord\":500.0,\"yCoord\":200.0}],\"edges\":[{\"id\":\"Edge_0\",\"source\":{\"id\":\"Gate_L1\",\"name\":\"Node_00\",\"xCoord\":150.0,\"yCoord\":400.0},\"destination\":{\"id\":\"Gate_L2\",\"name\":\"Node_01\",\"xCoord\":450.0,\"yCoord\":400.0},\"weight\":20},{\"id\":\"Edge_0\",\"source\":{\"id\":\"Gate_L2\",\"name\":\"Node_01\",\"xCoord\":450.0,\"yCoord\":400.0},\"destination\":{\"id\":\"Gate_L1\",\"name\":\"Node_00\",\"xCoord\":150.0,\"yCoord\":400.0},\"weight\":20},{\"id\":\"Edge_1\",\"source\":{\"id\":\"Gate_L1\",\"name\":\"Node_00\",\"xCoord\":150.0,\"yCoord\":400.0},\"destination\":{\"id\":\"Gate_U1\",\"name\":\"Node_02\",\"xCoord\":100.0,\"yCoord\":200.0},\"weight\":15},{\"id\":\"Edge_1\",\"source\":{\"id\":\"Gate_U1\",\"name\":\"Node_02\",\"xCoord\":100.0,\"yCoord\":200.0},\"destination\":{\"id\":\"Gate_L1\",\"name\":\"Node_00\",\"xCoord\":150.0,\"yCoord\":400.0},\"weight\":15},{\"id\":\"Edge_2\",\"source\":{\"id\":\"Gate_L2\",\"name\":\"Node_01\",\"xCoord\":450.0,\"yCoord\":400.0},\"destination\":{\"id\":\"Gate_U2\",\"name\":\"Node_03\",\"xCoord\":500.0,\"yCoord\":200.0},\"weight\":15},{\"id\":\"Edge_2\",\"source\":{\"id\":\"Gate_U2\",\"name\":\"Node_03\",\"xCoord\":500.0,\"yCoord\":200.0},\"destination\":{\"id\":\"Gate_L2\",\"name\":\"Node_01\",\"xCoord\":450.0,\"yCoord\":400.0},\"weight\":15},{\"id\":\"Edge_3\",\"source\":{\"id\":\"Gate_U1\",\"name\":\"Node_02\",\"xCoord\":100.0,\"yCoord\":200.0},\"destination\":{\"id\":\"Gate_U2\",\"name\":\"Node_03\",\"xCoord\":500.0,\"yCoord\":200.0},\"weight\":30},{\"id\":\"Edge_3\",\"source\":{\"id\":\"Gate_U2\",\"name\":\"Node_03\",\"xCoord\":500.0,\"yCoord\":200.0},\"destination\":{\"id\":\"Gate_U1\",\"name\":\"Node_02\",\"xCoord\":100.0,\"yCoord\":200.0},\"weight\":30}]}";
-        currentGraph = gson.fromJson(mapJSON, type);
 
-        */
         dijkstraAlgorithm = new DijkstraAlgorithm(currentGraph);
         Bundle bundle = getIntent().getExtras();
 
